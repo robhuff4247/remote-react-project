@@ -1,3 +1,5 @@
+///Simple test to check ability to get data from headless API
+
 import React from 'react';
 
 class Account1 extends React.Component {
