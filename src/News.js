@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+///Replace with data from http://localhost:8080/o/headless-delivery/v1.0/content-structures/41831/structured-contents
+
 export default function News() {
     return(
         <div className="fakeNews">

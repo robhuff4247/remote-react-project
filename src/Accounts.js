@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Carousel from 'react-bootstrap/Carousel';
 import './style.css';
 
+///Need to replace with data from http://localhost:8080/o/c/bankaccounts/[bank account number] APIs. Currently not sure how to do that.
+
 export default function Accounts() {
   return(
     <div className="Dashboard">
