@@ -1,7 +1,8 @@
 import React from 'react';
 import './style.css';
 
-//Test to retrieve data from headless API
+//Fetches data from the Headless API automatically generated when creating the Bank Accounts Liferay Object. 
+//This file corresponds to the checking account.
 
 class Account1 extends React.Component {
   constructor(props) {
@@ -9,15 +10,17 @@ class Account1 extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      accountBalance: null,
+      accountNumber: null,
+      accountType: null
     };
   }
 
   componentDidMount() {
-    fetch('http://localhost:8080/o/c/bankaccounts/41924', {
+    fetch('/o/c/bankaccounts/42744', {
       method: 'GET',
       headers: {
-        Authorization: 'Basic ' + btoa('test@liferay.com:test1'),
+        Authorization: 'Basic ' + btoa('test@liferay.com:test'),
         'Content-Type': 'application/json'
       }})
       .then(res => res.json())
@@ -25,7 +28,9 @@ class Account1 extends React.Component {
         (result) => {
           this.setState({
             isLoaded: true,
-            items: result.items
+            accountBalance: result.accountBalance,
+            accountNumber: result.accountNumber,
+            accountType: result.accountType
           });
         },
         // Note: it's important to handle errors here
@@ -41,20 +46,17 @@ class Account1 extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, accountBalance, accountNumber, accountType} = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
       return (
-        <ul>
-          {items.map(item => (
-            <li key={item.id}>
-              {item.accountBalance} {item.accountNumber}
-            </li>
-          ))}
-        </ul>
+        <div className="Dashboard">
+            <h2>{accountType.name} Account {accountNumber}</h2>
+            <h3>${accountBalance}</h3>
+        </div>
       );
     }
   }
